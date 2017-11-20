@@ -55,3 +55,11 @@ module "route_tables" {
   internet_gateway_id  = "${module.vpc.internet_gateway_id}"
   nat_gateway_ids      = "${module.nat.nat_gateway_ids}"
 }
+
+# Creates a public and private security groupd the regulate the in- and outbound traffic through EC2 instances.
+module "security_groups" {
+  source = "modules/security_groups"
+
+  cluster_name         = "${var.cluster_name}"
+  vpc_id               = "${module.vpc.vpc_id}"
+}

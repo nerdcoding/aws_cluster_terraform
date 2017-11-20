@@ -6,6 +6,8 @@ TODO describe cluster resources (VPC, subnets, gatweays, etc)
 
 === Terraform commands
 
+Download form here: [https://www.terraform.io/downloads.html]
+
 Before executing any of the Terraform commands the environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
 needs to be set with the appropriate AWS credentials.
 

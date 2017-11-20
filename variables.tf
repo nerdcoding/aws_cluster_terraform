@@ -7,6 +7,10 @@ variable "cluster_name" {
   type = "string"
   description = "Name of the AWS cluster to create."
 }
+variable "ssh_key_name" {
+  type        = "string"
+  description = "The name of the SSH key pair that you must use to log in to the instance securely."
+}
 
 variable "vpc_cidr" {
   type = "string"

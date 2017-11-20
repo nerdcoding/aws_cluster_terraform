@@ -63,3 +63,13 @@ module "security_groups" {
   cluster_name         = "${var.cluster_name}"
   vpc_id               = "${module.vpc.vpc_id}"
 }
+
+# Creates a t2.micro EC2 instance in each public subnet.
+module "ec2_instances" {
+  source = "modules/ec2"
+
+  ssh_key_name        = "${var.ssh_key_name}"
+  subnet_ids          = "${module.public_subnet.subnet_ids}"
+  public_subnet_count = "${length(var.public_subnet_cidrs)}"
+  sec_group_ids       = "${module.security_groups.public_security_group_ids}"
+}

@@ -30,3 +30,11 @@ module "public_subnet" {
   subnet_cidrs       = "${var.public_subnet_cidrs}"
   availibility_zones = "${var.availibility_zones}"
 }
+# In each public subnet a NAT Gateway is created with an associated Elastic IP. The private subnet in this availability
+# zone can send requests to the Internet through this NAT Gateway.
+module "nat" {
+  source = "modules/nat_gateway"
+
+  subnet_ids   = "${module.public_subnet.subnet_ids}"
+  subnet_count        = "${length(var.public_subnet_cidrs)}"
+}

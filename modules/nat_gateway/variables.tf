@@ -1,6 +1,6 @@
 variable "subnet_ids" {
   type        = "list"
-  description = "List of public subnets in which to place the NAT Gateway."
+  description = "List of subnets in which to place the NAT Gateway."
 }
 
 variable "subnet_count" {

@@ -11,18 +11,3 @@ resource "aws_subnet" "subnet" {
   }
 }
 
-# Create a new route table used for all just created subnets
-resource "aws_route_table" "subnet" {
-  vpc_id             = "${var.vpc_id}"
-
-  tags {
-    Name             = "${var.cluster_name}_route_table"
-  }
-}
-
-# Add all subnets to the route table
-resource "aws_route_table_association" "subnet" {
-  subnet_id          = "${element(aws_subnet.subnet.*.id, count.index)}"
-  route_table_id     = "${aws_route_table.subnet.id}"
-  count              = "${length(var.subnet_cidrs)}"
-}

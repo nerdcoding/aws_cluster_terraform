@@ -36,5 +36,22 @@ module "nat" {
   source = "modules/nat_gateway"
 
   subnet_ids   = "${module.public_subnet.subnet_ids}"
-  subnet_count        = "${length(var.public_subnet_cidrs)}"
+  subnet_count = "${length(var.public_subnet_cidrs)}"
+}
+
+# Creates one public route table for all public subnets. For each private subnet a route table is created. The public
+# route table gets a rule that routes all traffic through Internet Gateway. Each private route table gets a rule that
+# routes all traffic through the associated NAT Gateway.
+module "route_tables" {
+  source = "modules/route_table"
+
+  availibility_zones   = "${var.availibility_zones}"
+  cluster_name         = "${var.cluster_name}"
+  vpc_id               = "${module.vpc.vpc_id}"
+  public_subnet_ids    = "${module.public_subnet.subnet_ids}"
+  private_subnet_ids   = "${module.private_subnet.subnet_ids}"
+  public_subnet_count  = "${length(var.public_subnet_cidrs)}"
+  private_subnet_count = "${length(var.private_subnet_cidrs)}"
+  internet_gateway_id  = "${module.vpc.internet_gateway_id}"
+  nat_gateway_ids      = "${module.nat.nat_gateway_ids}"
 }

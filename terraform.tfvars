@@ -10,5 +10,5 @@ private_subnet_cidrs = ["172.16.50.0/24", "172.16.51.0/24"]
 ec2_ami = "ami-da05a4a0"
 
 database_name = "test"
-database_user = "plsql"
-database_password = "plsql1234"
+database_user = "psql"
+database_password = "psql1234"

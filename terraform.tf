@@ -71,7 +71,8 @@ module "ec2_instances" {
   ssh_key_name        = "${var.ssh_key_name}"
   subnet_ids          = "${module.public_subnet.subnet_ids}"
   public_subnet_count = "${length(var.public_subnet_cidrs)}"
-  sec_group_id       = "${module.security_groups.public_security_group_id}"
+  sec_group_id        = "${module.security_groups.public_security_group_id}"
+  ec2_ami             = "${var.ec2_ami}"
 }
 
 # Creates an relation database with PostgreSQL as engine. The database lays in a subnet group which spans over all

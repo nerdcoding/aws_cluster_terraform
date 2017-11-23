@@ -13,9 +13,14 @@ variable "sec_group_id" {
   description = "The security group this EC2 belongs to."
 }
 
-variable "public_subnet_count" {
+variable "public_ip" {
   type        = "string"
-  description = "Size of the public subnet_ids."
+  description = "Boolean (true/false) indicates if the EC2 instance should get a public IP."
+}
+
+variable "instance_count" {
+  type        = "string"
+  description = "Count of intances to create in each subnet."
 }
 
 variable "ec2_ami" {

@@ -48,6 +48,14 @@ resource "aws_security_group_rule" "public_outbound_8080" {
   source_security_group_id = "${aws_security_group.private_sg.id}"
   security_group_id        = "${aws_security_group.public_sg.id}"
 }
+resource "aws_security_group_rule" "public_outbound_ssh" {
+  type                     = "egress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = "${aws_security_group.private_sg.id}"
+  security_group_id        = "${aws_security_group.public_sg.id}"
+}
 resource "aws_security_group_rule" "public_outbound_http" {
   type                     = "egress"
   from_port                = 80
@@ -79,6 +87,14 @@ resource "aws_security_group_rule" "private_inbound_8080" {
   type                     = "ingress"
   from_port                = 8080
   to_port                  = 8080
+  protocol                 = "tcp"
+  source_security_group_id = "${aws_security_group.public_sg.id}"
+  security_group_id        = "${aws_security_group.private_sg.id}"
+}
+resource "aws_security_group_rule" "private_inbound_ssh" {
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
   protocol                 = "tcp"
   source_security_group_id = "${aws_security_group.public_sg.id}"
   security_group_id        = "${aws_security_group.private_sg.id}"

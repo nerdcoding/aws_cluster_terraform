@@ -8,8 +8,8 @@ variable "subnet_ids" {
   description = "List of subnet ids where the EC2 instances are created."
 }
 
-variable "sec_group_ids" {
-  type        = "list"
+variable "sec_group_id" {
+  type        = "string"
   description = "List of all security group ids."
 }
 

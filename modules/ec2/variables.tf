@@ -17,3 +17,8 @@ variable "public_subnet_count" {
   type        = "string"
   description = "Size of the public subnet_ids."
 }
+
+variable "ec2_ami" {
+  type        = "string"
+  description = "The AMI of the operating system which should be used for each EC2 instance."
+}

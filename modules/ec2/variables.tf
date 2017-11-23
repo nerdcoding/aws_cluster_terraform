@@ -10,7 +10,7 @@ variable "subnet_ids" {
 
 variable "sec_group_id" {
   type        = "string"
-  description = "List of all security group ids."
+  description = "The security group this EC2 belongs to."
 }
 
 variable "public_subnet_count" {

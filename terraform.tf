@@ -73,3 +73,16 @@ module "ec2_instances" {
   public_subnet_count = "${length(var.public_subnet_cidrs)}"
   sec_group_id       = "${module.security_groups.public_security_group_id}"
 }
+
+# Creates an relation database with PostgreSQL as engine. The database lays in a subnet group which spans over all
+# private subnets.
+module "rds" {
+  source = "modules/rds"
+
+  cluster_name         = "${var.cluster_name}"
+  private_subnet_ids   = "${module.private_subnet.subnet_ids}"
+  sec_group_id         = "${module.security_groups.private_security_group_id}"
+  database_name        = "${var.database_name}"
+  database_user        = "${var.database_user}"
+  database_password    = "${var.database_password}"
+}

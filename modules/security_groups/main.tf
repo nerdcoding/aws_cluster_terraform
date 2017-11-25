@@ -32,14 +32,6 @@ resource "aws_security_group_rule" "public_inbound_ssh" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = "${aws_security_group.public_sg.id}"
 }
-resource "aws_security_group_rule" "public_outbound_plsql" {
-  type                     = "egress"
-  from_port                = 5432
-  to_port                  = 5432
-  protocol                 = "tcp"
-  source_security_group_id = "${aws_security_group.private_sg.id}"
-  security_group_id = "${aws_security_group.public_sg.id}"
-}
 resource "aws_security_group_rule" "public_outbound_8080" {
   type                     = "egress"
   from_port                = 8080
@@ -80,7 +72,7 @@ resource "aws_security_group_rule" "private_inbound_plsql" {
   from_port                = 5432
   to_port                  = 5432
   protocol                 = "tcp"
-  source_security_group_id = "${aws_security_group.public_sg.id}"
+  source_security_group_id = "${aws_security_group.private_sg.id}"
   security_group_id        = "${aws_security_group.private_sg.id}"
 }
 resource "aws_security_group_rule" "private_inbound_8080" {
@@ -114,4 +106,12 @@ resource "aws_security_group_rule" "private_outbound_https" {
   protocol                 = "tcp"
   cidr_blocks              = ["0.0.0.0/0"]
   security_group_id        = "${aws_security_group.private_sg.id}"
+}
+resource "aws_security_group_rule" "private_outbound_plsql" {
+  type                     = "egress"
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  source_security_group_id = "${aws_security_group.private_sg.id}"
+  security_group_id = "${aws_security_group.private_sg.id}"
 }

@@ -99,3 +99,14 @@ module "rds" {
   database_user        = "${var.database_user}"
   database_password    = "${var.database_password}"
 }
+
+module "load_balancer" {
+  source = "modules/load_balancer"
+
+  cluster_name         = "${var.cluster_name}"
+  subnet_ids           = "${module.public_subnet.subnet_ids}"
+  sec_group_id         = "${module.security_groups.public_security_group_id}"
+  vpc_id               = "${module.vpc.vpc_id}"
+  ec2_instance_ids     = "${module.private_ec2_instances.aws_instance_ids}"
+  ec2_instance_count   = "${var.private_ec2_instances}"
+}

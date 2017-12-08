@@ -7,6 +7,7 @@ vpc_cidr = "172.16.0.0/16"
 public_subnet_cidrs = ["172.16.0.0/24", "172.16.1.0/24"]
 private_subnet_cidrs = ["172.16.50.0/24", "172.16.51.0/24"]
 
+private_ec2_instances=2
 ec2_ami = "ami-da05a4a0"
 
 database_name = "test"

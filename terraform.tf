@@ -70,7 +70,7 @@ module "private_ec2_instances" {
 
   ssh_key_name        = "${var.ssh_key_name}"
   subnet_ids          = "${module.private_subnet.subnet_ids}"
-  instance_count      = "2"
+  instance_count      = "${var.private_ec2_instances}"
   public_ip           = "false"
   sec_group_id        = "${module.security_groups.private_security_group_id}"
   ec2_ami             = "${var.ec2_ami}"

@@ -29,6 +29,10 @@ variable "availibility_zones" {
   description = "Availibility zones which should be used in the AWS region. The count of elements must match with the 'public_subnet_cidrs' and 'private_subnet_cidrs'."
 }
 
+variable "private_ec2_instances" {
+  type        = "string"
+  description = "Number of the EC2 instances to create."
+}
 variable "ec2_ami" {
   type        = "string"
   description = "The AMI of the operating system which should be used for each EC2 instance."

@@ -65,3 +65,7 @@ terraform apply -input=false -auto-approve ::
 terraform destroy ::
     The terraform destroy command is used to destroy the Terraform-managed infrastructure.
 
+
+=== Licensing
+The software of this repository is licensed under the GNU General Public License v2.
+See [LICENSE](https://www.gnu.org/licenses/gpl-2.0.html) for the full license text.

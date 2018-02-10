@@ -35,7 +35,7 @@ resources:
 * Elastic Load Balancing +
     A load balancer lays in the public security group and is responsible to istributes incoming application traffic
     across all EC2 instances in both private subnets.
-* Amazon RDS
+* Amazon RDS +
     Finally a Amazon Relational Database Service (Amazon RDS) in form of a PostgreSQL is created. This PostgreSQL lays
     in a subnet group and is accessible by the EC2 instances from both private subnets.
 

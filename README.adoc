@@ -1,9 +1,6 @@
-[![Build Status](https://travis-ci.org/lilliCao/test.png)]https://travis-ci.org/lilliCao/test)
-
 
 https://api.travis-ci.org/lilliCao/test[image::https://api.travis-ci.org/lilliCao/test.png[Build Status]]
 
-image::https://api.travis-ci.org/lilliCao/test.png[Build Status]
 
 == Create a complete AWS cluster with Terraform
 

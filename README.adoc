@@ -2,7 +2,7 @@
 
 
 [link=https://travis-ci.org/lilliCao/test/]
-image::https://api.travis-ci.org/lilliCao/test.png
+image::https://api.travis-ci.org/lilliCao/test.png[Build Status]
 
 
 

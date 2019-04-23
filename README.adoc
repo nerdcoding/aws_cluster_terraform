@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lilliCao/test)]https://travis-ci.org/lilliCao/test)
+
 
 == Create a complete AWS cluster with Terraform
 

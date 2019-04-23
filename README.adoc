@@ -1,5 +1,9 @@
 
-https://travis-ci.org/lilliCao/test/[image::https://api.travis-ci.org/lilliCao/test.png]
+
+
+[link=https://travis-ci.org/lilliCao/test/]
+image::https://api.travis-ci.org/lilliCao/test.png
+
 
 
 

@@ -1,5 +1,5 @@
 
-https://api.travis-ci.org/lilliCao/test[image::https://api.travis-ci.org/lilliCao/test.png[Build Status]]
+https://api.travis-ci.org/lilliCao/test[abc]
 
 
 == Create a complete AWS cluster with Terraform

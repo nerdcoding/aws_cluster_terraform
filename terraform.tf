@@ -6,7 +6,7 @@ provider "aws" {
 
 # Creates a VPC and a Internet Gateway in the VPC
 module "vpc" {
-  source = "modules/vpc"
+  source = "./modules/vpc"
 
   cluster_name         = "${var.cluster_name}"
   vpc_cidr             = "${var.vpc_cidr}"
@@ -14,7 +14,7 @@ module "vpc" {
 
 # For each 'private_subnet_cidr' a private subnet is created.
 module "private_subnet" {
-  source = "modules/subnet"
+  source = "./modules/subnet"
 
   cluster_name       = "${var.cluster_name}_private_subnet"
   vpc_id             = "${module.vpc.vpc_id}"
@@ -23,7 +23,7 @@ module "private_subnet" {
 }
 # For each 'public_subnet_cidr' a public subnet is created.
 module "public_subnet" {
-  source = "modules/subnet"
+  source = "./modules/subnet"
 
   cluster_name       = "${var.cluster_name}_public_subnet"
   vpc_id             = "${module.vpc.vpc_id}"
@@ -33,7 +33,7 @@ module "public_subnet" {
 # In each public subnet a NAT Gateway is created with an associated Elastic IP. The private subnet in this availability
 # zone can send requests to the Internet through this NAT Gateway.
 module "nat" {
-  source = "modules/nat_gateway"
+  source = "./modules/nat_gateway"
 
   subnet_ids   = "${module.public_subnet.subnet_ids}"
   subnet_count = "${length(var.public_subnet_cidrs)}"
@@ -43,7 +43,7 @@ module "nat" {
 # route table gets a rule that routes all traffic through Internet Gateway. Each private route table gets a rule that
 # routes all traffic through the associated NAT Gateway.
 module "route_tables" {
-  source = "modules/route_table"
+  source = "./modules/route_table"
 
   availibility_zones   = "${var.availibility_zones}"
   cluster_name         = "${var.cluster_name}"
@@ -58,7 +58,7 @@ module "route_tables" {
 
 # Creates a public and private security groupd the regulate the in- and outbound traffic through EC2 instances.
 module "security_groups" {
-  source = "modules/security_groups"
+  source = "./modules/security_groups"
 
   cluster_name         = "${var.cluster_name}"
   vpc_id               = "${module.vpc.vpc_id}"
@@ -66,7 +66,7 @@ module "security_groups" {
 
 # Creates t2.micro EC2 instances in each private subnet.
 module "private_ec2_instances" {
-  source = "modules/ec2"
+  source = "./modules/ec2"
 
   ssh_key_name        = "${var.ssh_key_name}"
   subnet_ids          = "${module.private_subnet.subnet_ids}"
@@ -77,7 +77,7 @@ module "private_ec2_instances" {
 }
 # Creates a t2.micro EC2 instance in each public subnet used as host bastion.
 module "public_ec2_instances" {
-  source = "modules/ec2"
+  source = "./modules/ec2"
 
   ssh_key_name        = "${var.ssh_key_name}"
   subnet_ids          = "${module.public_subnet.subnet_ids}"
@@ -90,7 +90,7 @@ module "public_ec2_instances" {
 # Creates an relation database with PostgreSQL as engine. The database lays in a subnet group which spans over all
 # private subnets.
 module "rds" {
-  source = "modules/rds"
+  source = "./modules/rds"
 
   cluster_name         = "${var.cluster_name}"
   private_subnet_ids   = "${module.private_subnet.subnet_ids}"
@@ -101,7 +101,7 @@ module "rds" {
 }
 
 module "load_balancer" {
-  source = "modules/load_balancer"
+  source = "./modules/load_balancer"
 
   cluster_name         = "${var.cluster_name}"
   subnet_ids           = "${module.public_subnet.subnet_ids}"

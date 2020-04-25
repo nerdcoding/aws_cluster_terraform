@@ -1,4 +1,4 @@
-output "PostgreSQL Database DNS" {
+output "PostgreSQL_Database_DNS" {
   value = [
     "${module.rds.postgresql_endpoint}"
   ]

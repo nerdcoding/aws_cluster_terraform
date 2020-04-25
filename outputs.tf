@@ -1,5 +1,6 @@
 output "PostgreSQL_Database_DNS" {
   value = [
-    "${module.rds.postgresql_endpoint}"
+    module.rds.postgresql_endpoint,
   ]
 }
+

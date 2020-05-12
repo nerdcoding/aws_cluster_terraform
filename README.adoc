@@ -1,12 +1,3 @@
-
-
-
-[link=https://travis-ci.org/lilliCao/test/]
-image::https://api.travis-ci.org/lilliCao/test.png[Build Status]
-
-
-
-
 == Create a complete AWS cluster with Terraform
 
 image::AWS.png[AWS Cluster]
